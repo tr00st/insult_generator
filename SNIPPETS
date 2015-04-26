@@ -1,0 +1,9 @@
+Set up environments for both python 3.4 and 2.7
+
+$ virtualenv -p /usr/bin/python3.4 --prompt='(insult_generator[3.4]) ' env-3.4
+$ virtualenv -p /usr/bin/python2.7 --prompt='(insult_generator[2.7]) ' env-2.7
+
+
+Run tests for both python 3.4 and 2.7:
+
+$ (. env-2.7/bin/activate && python setup.py test ); (. env-3.4/bin/activate && python setup.py test)
