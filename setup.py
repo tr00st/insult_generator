@@ -5,4 +5,8 @@ setup(name='insultgenerator',
 	author='James Cheese',
 	author_email='trust@tr00st.co.uk',
 	install_requires=['six'],
+	test_suite='insultgenerator.tests',
+	package_data = {
+		'insultgenerator.wordlists': '*.txt',
+	},
 )
