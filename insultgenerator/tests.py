@@ -15,3 +15,6 @@ class TestWords(unittest.TestCase):
 				was_different = True
 				break
 		self.assertTrue(was_different, "The same adjective was returned 1000 times in a row...")
+	def test_get_insulting_adjective_no_blanks_1000(self):
+		for i in range(0,1000):
+			self.assertNotEqual(words.get_insulting_adjective(), "")
