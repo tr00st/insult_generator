@@ -1,14 +1,20 @@
 import pkg_resources
 import random
 
-_insulting_adjectives = []
+_wordlists = {}
+
+def _load_wordlist(list_reference, filename):
+	global _wordlists
+	unparsed_list = pkg_resources.resource_string(__name__, filename)
+	_wordlists[list_reference] = unparsed_list.decode().strip().split('\n')
 
 def _load_wordlists():
-	global _insulting_adjectives
-	insulting_adjective_list = pkg_resources.resource_string(__name__, "wordlists/insulting_adjectives.txt")
-	_insulting_adjectives = insulting_adjective_list.decode().strip().split('\n')
+	_load_wordlist("insulting_adjectives", "wordlists/insulting_adjectives.txt")
+
+def _get_random_word(list):
+	return random.choice(_wordlists[list])
 
 def get_insulting_adjective():
-	return random.choice(_insulting_adjectives)
+	return _get_random_word("insulting_adjectives")
 
 _load_wordlists()
