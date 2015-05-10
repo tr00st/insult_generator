@@ -50,14 +50,14 @@ class TestPhrases(unittest.TestCase):
 		validation_regex = re.compile(format)
 		for i in range(1,1000):
 			phrase = callee()
-			self.assertIsNotNone(validation_regex.fullmatch(phrase), "Result did not match, expected %s, got %s"%(format, phrase))
+			self.assertIsNotNone(validation_regex.match(phrase), "Result did not match, expected %s, got %s"%(format, phrase))
 			
 	def test_get_basic_insult_parses_1000(self):
-		self.do_test_get_phrase_parses_1000(partial(phrases.get_simple_insult, "TestNoun"), '^TestNoun is .*$')
+		self.do_test_get_phrase_parses_1000(partial(phrases.get_simple_insult, "TestNoun"), '\ATestNoun is .*\Z')
 			
 	def test_get_so_insult_parses_1000(self):
-		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult, "TestNoun"), '^TestNoun\'s so .*$')
+		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult, "TestNoun"), '\ATestNoun\'s so .*\Z')
 	def test_get_so_insult_with_action_parses_1000(self):
-		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult_with_action, "TestNoun", "TestPronoun"), '^TestNoun\'s so .*, TestPronoun .*$')
+		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult_with_action, "TestNoun", "TestPronoun"), '\ATestNoun\'s so .*, TestPronoun .*\Z')
 	def test_get_so_insult_with_action_and_target_parses_1000(self):
-		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult_with_action_and_target, "TestNoun", "TestPronoun"), '^TestNoun\'s so [a-zA-Z0-9\'-]+, TestPronoun [a-zA-Z0-9\'-]+ the [a-zA-Z0-9\'-]+$')
+		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult_with_action_and_target, "TestNoun", "TestPronoun"), '\ATestNoun\'s so [a-zA-Z0-9\'-]+, TestPronoun [a-zA-Z0-9\'-]+ the [a-zA-Z0-9\'-]+\Z')
