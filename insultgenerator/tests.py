@@ -1,20 +1,63 @@
 import unittest
 import six
-from insultgenerator import words
+import re
+from functools import partial
+from insultgenerator import words, phrases
 
 class TestWords(unittest.TestCase):
-	def test_get_insulting_adjective(self):
-		adjective = words.get_insulting_adjective()
+	def do_test_get_word(self, callee):
+		adjective = callee()
 		self.assertTrue(isinstance(adjective, six.string_types), "Returned adjective is not a string")
 		self.assertTrue(len(adjective) > 0, "Returned adjective is too short!")
-	def test_get_insulting_adjective_is_random(self):
-		first_adjective = words.get_insulting_adjective()
+	
+	def do_test_get_word_is_random(self, callee):
+		first_adjective = callee()
 		was_different = False
 		for i in range(0,1000):
-			if words.get_insulting_adjective() != first_adjective:
+			if callee() != first_adjective:
 				was_different = True
 				break
 		self.assertTrue(was_different, "The same adjective was returned 1000 times in a row...")
-	def test_get_insulting_adjective_no_blanks_1000(self):
+		
+	def do_test_get_word_no_blanks_1000(self, callee):
 		for i in range(0,1000):
-			self.assertNotEqual(words.get_insulting_adjective(), "")
+			self.assertNotEqual(callee(), "", "A blank item was returned")
+		
+	def test_get_insulting_adjective(self):
+		self.do_test_get_word(words.get_insulting_adjective)
+	def test_get_insulting_adjective_is_random(self):
+		self.do_test_get_word_is_random(words.get_insulting_adjective)
+	def test_get_insulting_adjective_no_blanks_1000(self):
+		self.do_test_get_word_no_blanks_1000(words.get_insulting_adjective)
+		
+	def test_get_past_tense_verb(self):
+		self.do_test_get_word(words.get_past_tense_verb)
+	def test_get_past_tense_verb_is_random(self):
+		self.do_test_get_word_is_random(words.get_past_tense_verb)
+	def test_get_past_tense_verb_no_blanks_1000(self):
+		self.do_test_get_word_no_blanks_1000(words.get_past_tense_verb)
+		
+	def test_get_noun(self):
+		self.do_test_get_word(words.get_noun)
+	def test_get_noun_is_random(self):
+		self.do_test_get_word_is_random(words.get_noun)
+	def test_get_noun_no_blanks_1000(self):
+		self.do_test_get_word_no_blanks_1000(words.get_noun)
+		
+
+class TestPhrases(unittest.TestCase):
+	def do_test_get_phrase_parses_1000(self, callee, format):
+		validation_regex = re.compile(format)
+		for i in range(1,1000):
+			phrase = callee()
+			self.assertIsNotNone(validation_regex.fullmatch(phrase), "Result did not match, expected %s, got %s"%(format, phrase))
+			
+	def test_get_basic_insult_parses_1000(self):
+		self.do_test_get_phrase_parses_1000(partial(phrases.get_simple_insult, "TestNoun"), '^TestNoun is .*$')
+			
+	def test_get_so_insult_parses_1000(self):
+		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult, "TestNoun"), '^TestNoun\'s so .*$')
+	def test_get_so_insult_with_action_parses_1000(self):
+		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult_with_action, "TestNoun", "TestPronoun"), '^TestNoun\'s so .*, TestPronoun .*$')
+	def test_get_so_insult_with_action_and_target_parses_1000(self):
+		self.do_test_get_phrase_parses_1000(partial(phrases.get_so_insult_with_action_and_target, "TestNoun", "TestPronoun"), '^TestNoun\'s so [a-zA-Z0-9\'-]+, TestPronoun [a-zA-Z0-9\'-]+ the [a-zA-Z0-9\'-]+$')
