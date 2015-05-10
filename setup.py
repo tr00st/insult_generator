@@ -1,4 +1,5 @@
 from setuptools import setup
+from glob import glob
 setup(name='insultgenerator',
 	version='0.2',
 	packages=['insultgenerator'],
@@ -10,7 +11,7 @@ setup(name='insultgenerator',
 	description='Random insult generator',
 	url="https://github.com/tr00st/insult_generator",
 	package_data = {
-		'insultgenerator.wordlists': '*.txt',
+		'insultgenerator.wordlists': glob('insultgenerator/wordlists/*.txt'),
 	},
 	classifiers = [
 		'Development Status :: 3 - Alpha',
