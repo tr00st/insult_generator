@@ -3,6 +3,7 @@ import six
 import re
 from functools import partial
 from insultgenerator import words, phrases
+from pip._vendor.html5lib import inputstream
 
 class TestWords(unittest.TestCase):
 	def do_test_get_word(self, callee):
@@ -43,6 +44,29 @@ class TestWords(unittest.TestCase):
 		self.do_test_get_word_is_random(words.get_noun)
 	def test_get_noun_no_blanks_1000(self):
 		self.do_test_get_word_no_blanks_1000(words.get_noun)
+		
+	def test_int_padding_tool(self):
+		from binascii import hexlify, unhexlify
+		from insultgenerator.phrases import _unpack_bytes
+		test_sets = [
+			['00', 0],
+			['01', 1],
+			['0001', 256],
+			['00000001', 16777216],
+			['ffff', 65535],
+			['ffffffff', 4294967295],
+			['ff', 255],
+			['ff00', 255],
+			['00ff', 65280],
+			['', 0],
+			['00', 0],
+			['0000', 0],
+			['000000', 0],
+			['00000000', 0],
+		]
+		for input, expected in test_sets:
+			actual = _unpack_bytes(unhexlify(input))
+			self.assertEqual(expected, actual, 'Byte padding did not match expectation - input: %s, output: %s, expected: %s'%(input, actual, expected))			
 		
 
 class TestPhrases(unittest.TestCase):

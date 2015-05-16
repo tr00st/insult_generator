@@ -1,4 +1,17 @@
 from . import words
+import struct
+
+def _unpack_bytes(bytes):
+    """
+    Unpack a set of bytes into an integer. First pads to 4 bytes.
+    Little endian.
+    """
+    if bytes == b'':
+        return 0
+    int_length = 4
+    len_diff = int_length - len(bytes)
+    bytes = bytes + len_diff * b'\x00'
+    return struct.unpack("<L", bytes)[0]
 
 def get_simple_insult(target_noun):
     return "%s is %s"%(target_noun, words.get_insulting_adjective())
