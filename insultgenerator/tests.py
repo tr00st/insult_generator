@@ -49,20 +49,20 @@ class TestWords(unittest.TestCase):
 		from binascii import hexlify, unhexlify
 		from insultgenerator.phrases import _unpack_bytes
 		test_sets = [
-			['00', 0],
-			['01', 1],
-			['0001', 256],
-			['00000001', 16777216],
-			['ffff', 65535],
-			['ffffffff', 4294967295],
-			['ff', 255],
-			['ff00', 255],
-			['00ff', 65280],
-			['', 0],
-			['00', 0],
-			['0000', 0],
-			['000000', 0],
-			['00000000', 0],
+			[b'00', 0],
+			[b'01', 1],
+			[b'0001', 256],
+			[b'00000001', 16777216],
+			[b'ffff', 65535],
+			[b'ffffffff', 4294967295],
+			[b'ff', 255],
+			[b'ff00', 255],
+			[b'00ff', 65280],
+			[b'', 0],
+			[b'00', 0],
+			[b'0000', 0],
+			[b'000000', 0],
+			[b'00000000', 0],
 		]
 		for input, expected in test_sets:
 			actual = _unpack_bytes(unhexlify(input))
