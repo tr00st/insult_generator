@@ -3,7 +3,6 @@ import six
 import re
 from functools import partial
 from insultgenerator import words, phrases
-from pip._vendor.html5lib import inputstream
 
 class TestWords(unittest.TestCase):
 	def do_test_get_word(self, callee):
