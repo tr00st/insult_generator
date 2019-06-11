@@ -2,6 +2,8 @@
 Random insult generator, written in Python
 
 [![Build Status](https://travis-ci.org/tr00st/insult_generator.svg?branch=master)](https://travis-ci.org/tr00st/insult_generator)
+[![PyPI - License](https://img.shields.io/pypi/l/insultgenerator.svg)](https://pypi.org/project/insultgenerator/)
+[![PyPI](https://img.shields.io/pypi/v/insultgenerator.svg)](https://pypi.org/project/insultgenerator/)
 
 # Usage
 
