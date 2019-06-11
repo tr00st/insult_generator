@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='insultgenerator',
-	version='1.0.1',
+	version='1.0.2',
 	packages=['insultgenerator'],
 	license='MIT',
 	author='James Cheese',
