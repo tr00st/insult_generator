@@ -1,7 +1,7 @@
 from setuptools import setup
 from glob import glob
 setup(name='insultgenerator',
-	version='0.3',
+	version='1.0',
 	packages=['insultgenerator'],
 	license='MIT',
 	author='James Cheese',
@@ -14,7 +14,7 @@ setup(name='insultgenerator',
 		'insultgenerator': ['wordlists/*.txt'],
 	},
 	classifiers = [
-		'Development Status :: 3 - Alpha',
+		'Development Status :: 5 - Production/Stable',
 	    'Programming Language :: Python :: 2.7',
 	    'Programming Language :: Python :: 3',
 	    'Programming Language :: Python :: 3.4',
