@@ -1,7 +1,13 @@
 from setuptools import setup
 from glob import glob
+from os import path
+
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 setup(name='insultgenerator',
-	version='1.0',
+	version='1.0.1',
 	packages=['insultgenerator'],
 	license='MIT',
 	author='James Cheese',
@@ -9,6 +15,8 @@ setup(name='insultgenerator',
 	install_requires=['six'],
 	test_suite='insultgenerator.tests',
 	description='Random insult generator',
+    long_description=long_description,
+    long_description_content_type='text/markdown',      
 	url="https://github.com/tr00st/insult_generator",
 	package_data = {
 		'insultgenerator': ['wordlists/*.txt'],
