@@ -43,30 +43,6 @@ class TestWords(unittest.TestCase):
 		self.do_test_get_word_is_random(words.get_noun)
 	def test_get_noun_no_blanks_1000(self):
 		self.do_test_get_word_no_blanks_1000(words.get_noun)
-		
-	def test_int_padding_tool(self):
-		from binascii import hexlify, unhexlify
-		from insultgenerator.phrases import _unpack_bytes
-		test_sets = [
-			[b'00', 0],
-			[b'01', 1],
-			[b'0001', 256],
-			[b'00000001', 16777216],
-			[b'ffff', 65535],
-			[b'ffffffff', 4294967295],
-			[b'ff', 255],
-			[b'ff00', 255],
-			[b'00ff', 65280],
-			[b'', 0],
-			[b'00', 0],
-			[b'0000', 0],
-			[b'000000', 0],
-			[b'00000000', 0],
-		]
-		for input, expected in test_sets:
-			actual = _unpack_bytes(unhexlify(input))
-			self.assertEqual(expected, actual, 'Byte padding did not match expectation - input: %s, output: %s, expected: %s'%(input, actual, expected))			
-		
 
 class TestPhrases(unittest.TestCase):
 	def do_test_get_phrase_parses_1000(self, callee, format):
