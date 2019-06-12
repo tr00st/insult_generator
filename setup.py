@@ -1,13 +1,14 @@
 from setuptools import setup
 from glob import glob
 from os import path
+import io
 
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+with io.open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='insultgenerator',
-	version='1.0.2',
+	version='1.0.3',
 	packages=['insultgenerator'],
 	license='MIT',
 	author='James Cheese',
