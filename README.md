@@ -20,3 +20,7 @@ Random insult generator, written in Python
 # Disclaimer
 
 No guarantees are made to the clarity or nonsensical nature of the insults created by this software.
+
+# Demo
+
+Web API version available at https://insults.tr00st.co.uk/docs
