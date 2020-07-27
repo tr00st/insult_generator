@@ -4,6 +4,7 @@ Random insult generator, written in Python
 [![Build Status](https://travis-ci.org/tr00st/insult_generator.svg?branch=master)](https://travis-ci.org/tr00st/insult_generator)
 [![PyPI - License](https://img.shields.io/pypi/l/insultgenerator.svg)](https://pypi.org/project/insultgenerator/)
 [![PyPI](https://img.shields.io/pypi/v/insultgenerator.svg)](https://pypi.org/project/insultgenerator/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftr00st%2Finsult_generator.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftr00st%2Finsult_generator?ref=badge_shield)
 
 # Usage
 
@@ -24,3 +25,7 @@ No guarantees are made to the clarity or nonsensical nature of the insults creat
 # Demo
 
 Web API version available at https://insults.tr00st.co.uk/docs
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftr00st%2Finsult_generator.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftr00st%2Finsult_generator?ref=badge_large)
